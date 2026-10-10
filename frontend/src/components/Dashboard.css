@@ -1,0 +1,198 @@
+.dashboard-page {
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: var(--background-color);
+}
+
+.dashboard-container {
+  width: 90%;
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+/* School name */
+
+.dashboard-container > h2 {
+  margin-bottom: 1.5rem;
+
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Heading */
+
+.dashboard-container h1 {
+  margin-bottom: 0.5rem;
+
+  color: var(--text-color);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.dashboard-container > p {
+  margin-bottom: 2rem;
+
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+/* Attendance button */
+
+.dashboard-actions {
+  margin-bottom: 2rem;
+}
+
+.attendance-button {
+  display: inline-block;
+
+  padding: 0.75rem 1.25rem;
+
+  border-radius: 0.5rem;
+
+  background-color: var(--primary-color);
+  color: var(--white);
+
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition: background-color 0.2s ease;
+}
+
+.attendance-button:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Add student and search */
+
+.student-actions {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.add-student-group,
+.search-group {
+  display: flex;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.add-student-group input,
+.search-group input {
+  flex: 1;
+
+  padding: 0.75rem 1rem;
+
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+
+  background-color: var(--surface-color);
+  color: var(--text-color);
+
+  font-family: inherit;
+  font-size: 1rem;
+
+  outline: none;
+}
+
+.add-student-group input:focus,
+.search-group input:focus {
+  border-color: var(--primary-color);
+}
+
+/* Add and search buttons */
+
+.add-student-group button,
+.search-group button {
+  padding: 0.75rem 1.25rem;
+
+  border: none;
+  border-radius: 0.5rem;
+
+  background-color: var(--primary-color);
+  color: var(--white);
+
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: background-color 0.2s ease;
+}
+
+.add-student-group button:hover,
+.search-group button:hover {
+  background-color: var(--primary-hover);
+}
+
+/* All students */
+
+.all-students {
+  padding: 1.5rem;
+
+  background-color: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0.75rem;
+}
+
+.all-students h2 {
+  margin-bottom: 1rem;
+
+  color: var(--text-color);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.view-students-button {
+  padding: 0.75rem 1.25rem;
+
+  border: 1px solid var(--primary-color);
+  border-radius: 0.5rem;
+
+  background-color: transparent;
+  color: var(--primary-color);
+
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.view-students-button:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+/* Responsive */
+
+@media (max-width: 40rem) {
+  .dashboard-page {
+    padding: 1rem;
+  }
+
+  .add-student-group,
+  .search-group {
+    flex-direction: column;
+  }
+
+  .add-student-group button,
+  .search-group button {
+    width: 100%;
+  }
+
+  .attendance-button {
+    width: 100%;
+    text-align: center;
+  }
+}

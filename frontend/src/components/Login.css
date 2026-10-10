@@ -1,0 +1,107 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+  background-color: var(--background-color);
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  width: 90%;
+  max-width: 25rem;
+  padding: 2rem;
+
+  background-color: var(--surface-color);
+  border-radius: 0.75rem;
+  box-shadow: 0 0.25rem 0.75rem rgba(15, 23, 42, 0.1);
+}
+
+.email_input_group,
+.password_input_group {
+  width: 100%;
+}
+
+.email_input_group input,
+.password_input_group input {
+  width: 100%;
+  padding: 0.75rem;
+margin-bottom: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+
+  font-size: 1rem;
+  color: var(--text-color);
+  background-color: var(--surface-color);
+
+  outline: none;
+}
+
+.email_input_group input:focus,
+.password_input_group input:focus {
+  border-color: var(--primary-color);
+}
+.login-container button {
+  width: 100%;
+  padding: 0.75rem;
+
+  background-color: var(--primary-color);
+  color: var(--white);
+
+  border: none;
+  border-radius: 0.5rem;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.login-container button:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-0.1rem);
+}
+
+.login-container button:active {
+  transform: translateY(0);
+}
+
+.login-container h2 {
+  color: var(--text-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.login-container h3 {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.login-container p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.login-container a {
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-container a:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}

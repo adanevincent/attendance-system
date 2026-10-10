@@ -1,0 +1,119 @@
+.signup-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+  background-color: var(--background-color);
+}
+
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  width: 90%;
+  max-width: 25rem;
+  padding: 2rem;
+
+  background-color: var(--surface-color);
+  border-radius: 0.75rem;
+  box-shadow: 0 0.25rem 0.75rem rgba(15, 23, 42, 0.1);
+}
+
+.signup-container h2 {
+  color: var(--text-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.signup-container h3 {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.signup-container form {
+  width: 100%;
+}
+
+.name_input_group,
+.email_input_group,
+.password_input_group,
+.role_input_group {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.name_input_group input,
+.email_input_group input,
+.password_input_group input,
+.role_input_group select {
+  width: 100%;
+  padding: 0.75rem;
+
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--text-color);
+  background-color: var(--surface-color);
+
+  outline: none;
+}
+
+.name_input_group input:focus,
+.email_input_group input:focus,
+.password_input_group input:focus,
+.role_input_group select:focus {
+  border-color: var(--primary-color);
+}
+
+.signup-container button {
+  width: 100%;
+  padding: 0.75rem;
+
+  background-color: var(--primary-color);
+  color: var(--white);
+
+  border: none;
+  border-radius: 0.5rem;
+
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.signup-container button:hover {
+  background-color: var(--primary-hover);
+  transform: translateY(-0.1rem);
+}
+
+.signup-container button:active {
+  transform: translateY(0);
+}
+
+.signup-container p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.signup-container a {
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.signup-container a:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
