@@ -196,3 +196,10 @@
     text-align: center;
   }
 }
+.success-message {
+  color: blue;
+}
+
+.error-message {
+  color: red;
+}

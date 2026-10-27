@@ -16,13 +16,15 @@ export default function Login() {
       const response = await fetch("/api/login", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+            "Authorization": `Bearer ${localStorage.getItem("token")}`
         },
         body: JSON.stringify({ email, password })
       });
 
       const data = await response.json();
       if (response.ok) {
+        localStorage.setItem("token", data.token);
   navigate("/dashboard", {
      state: { role: data.user.role,name: data.user.name }
   });
