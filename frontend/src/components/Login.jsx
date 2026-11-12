@@ -70,6 +70,9 @@ export default function Login() {
               placeholder="Enter your password"
               required
             />
+            <p style={{ fontSize: "12px", margin: "5px 0" , textAlign: "right" }}>
+              <a href="/forgot-password">forgot password?</a>
+            </p>
           </div>
 
           <p

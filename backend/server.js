@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const pool = require("./db");
 const PORT = process.env.PORT || 5000;
 const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
 
 
 app.use(express.json());
@@ -82,7 +83,7 @@ app.post("/api/login", async (req, res) => {
     const user = results.rows[0];
 
     if (!user) {
-      return res.status(404).json({ message: "User not found." });
+      return res.status(404).json({ message: "Invalid credentials." });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
@@ -291,6 +292,95 @@ app.get("/api/students/search", authenticateToken, async (req, res) => {
   }
 });
 
+
+app.post("/api/forgot-password", async (req, res) => {
+  const genericMessage =
+    "If this email is registered, a reset link has been sent.";
+
+  try {
+    const { email } = req.body;
+
+    if (typeof email !== "string" || !email.trim()) {
+      return res.status(400).json({ message: "Please enter your email." });
+    }
+
+    const result = await pool.query(
+      "SELECT id FROM teachers WHERE email = $1",
+      [email.trim()]
+    );
+    const user = result.rows[0];
+
+    if (user) {
+      const token = crypto.randomBytes(32).toString("hex");
+      const tokenHash = crypto.createHash("sha256").update(token).digest("hex");
+
+      await pool.query(
+        `UPDATE teachers
+         SET reset_token_hash = $1,
+             reset_token_expires = NOW() + INTERVAL '15 minutes'
+         WHERE id = $2`,
+        [tokenHash, user.id]
+      );
+
+      const resetLink = `http://localhost:5173/reset-password?token=${token}`;//this link should be sent via email in production
+      console.log("Password reset link (dev only):", resetLink);// in prodection so send it to terminal for texting
+      
+    }
+
+    return res.status(200).json({ message: genericMessage });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Something went wrong." });
+  }
+});
+
+
+
+app.post("/api/reset-password", async (req, res) => {
+  try {
+    const { token, newPassword } = req.body;
+
+    if (typeof token !== "string" || !token) {
+      return res.status(400).json({ message: "Invalid or expired reset link." });
+    }
+
+   /* if (typeof newPassword !== "string" || newPassword.length < 8) {
+      return res.status(400).json({
+        message: "Password must be at least 8 characters."
+      });
+    }*/
+
+    const tokenHash = crypto.createHash("sha256").update(token).digest("hex");
+
+    const result = await pool.query(
+      `SELECT id FROM teachers
+       WHERE reset_token_hash = $1
+         AND reset_token_expires > NOW()`,
+      [tokenHash]
+    );
+    const user = result.rows[0];
+
+    if (!user) {
+      return res.status(400).json({ message: "Invalid or expired reset link." });
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    await pool.query(
+      `UPDATE teachers
+       SET password = $1,
+           reset_token_hash = NULL,
+           reset_token_expires = NULL
+       WHERE id = $2`,
+      [hashedPassword, user.id]
+    );
+
+    return res.status(200).json({ message: "Password updated. You can now log in." });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Something went wrong." });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port  http://localhost:${PORT}`);
