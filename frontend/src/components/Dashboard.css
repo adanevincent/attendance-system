@@ -37,37 +37,6 @@
   font-size: 1rem;
 }
 
-/* Attendance button */
-
-.dashboard-actions {
-  margin-bottom: 2rem;
-}
-
-.attendance-button {
-  display: inline-block;
-
-  padding: 0.75rem 1.25rem;
-
-  border-radius: 0.5rem;
-
-  background-color: var(--primary-color);
-  color: var(--white);
-
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 600;
-
-  text-decoration: none;
-
-  cursor: pointer;
-
-  transition: background-color 0.2s ease;
-}
-
-.attendance-button:hover {
-  background-color: var(--primary-hover);
-}
-
 /* Add student and search */
 
 .student-actions {
@@ -131,7 +100,7 @@
   background-color: var(--primary-hover);
 }
 
-/* All students */
+/* Search results */
 
 .all-students {
   padding: 1.5rem;
@@ -149,29 +118,14 @@
   font-weight: 600;
 }
 
-.view-students-button {
-  padding: 0.75rem 1.25rem;
+/* Feedback messages */
 
-  border: 1px solid var(--primary-color);
-  border-radius: 0.5rem;
-
-  background-color: transparent;
-  color: var(--primary-color);
-
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: 600;
-
-  cursor: pointer;
-
-  transition:
-    background-color 0.2s ease,
-    color 0.2s ease;
+.success-message {
+  color: blue;
 }
 
-.view-students-button:hover {
-  background-color: var(--primary-color);
-  color: var(--white);
+.error-message {
+  color: red;
 }
 
 /* Responsive */
@@ -190,16 +144,4 @@
   .search-group button {
     width: 100%;
   }
-
-  .attendance-button {
-    width: 100%;
-    text-align: center;
-  }
-}
-.success-message {
-  color: blue;
-}
-
-.error-message {
-  color: red;
 }

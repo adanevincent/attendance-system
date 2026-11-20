@@ -1,0 +1,86 @@
+.dl-card {
+  margin-top: 2rem;
+}
+
+.dl-search {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.dl-search input[type="date"] {
+  padding: 0.5rem;
+  border: 1px solid #d0d5dd;
+  border-radius: 6px;
+}
+
+.dl-error {
+  color: #b42318;
+  margin-top: 0.75rem;
+}
+
+.dl-result {
+  margin-top: 1rem;
+}
+
+.dl-day {
+  font-weight: 600;
+  margin: 0;
+}
+
+.dl-counts {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 2px 0 0.75rem;
+}
+
+.dl-missed {
+  color: #b42318;
+  font-size: 0.9rem;
+  margin: 2px 0 0;
+}
+
+.dl-table-wrapper {
+  overflow-x: auto;
+}
+
+.dl-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.dl-table th,
+.dl-table td {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dl-empty {
+  text-align: center;
+  color: #666;
+}
+
+.dl-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.dl-present {
+  background: #ecfdf3;
+  color: #027a48;
+}
+
+.dl-absent {
+  background: #fef3f2;
+  color: #b42318;
+}
+
+.dl-badge.dl-not-marked {
+  background: #f2f4f7;
+  color: #667085;
+}

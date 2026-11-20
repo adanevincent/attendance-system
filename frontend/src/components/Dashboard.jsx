@@ -1,7 +1,8 @@
-
 import "./Dashboard.css";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import ClassAttendance from "./ClassAttendance";
+import DateLookup from "./DateLookup";
 
 export default function Dashboard() {
   const location = useLocation();
@@ -77,38 +78,6 @@ export default function Dashboard() {
     }
   };
 
-  // Fetch all students in the logged-in teacher's class
-  const handleSeeAllStudents = async () => {
-    try {
-      const response = await fetch("/api/students", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`
-        }
-      });
-
-      if (handleAuthFailure(response)) return;
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.message || "Failed to fetch students.");
-      }
-
-      setStudents(result.students);
-      setMessage(
-        result.students.length === 0
-          ? "There are no students registered in your class yet."
-          : `Found ${result.students.length} student(s).`
-      );
-      setMessageType("success");
-    } catch (error) {
-      console.error("Error fetching students:", error);
-      setMessage(error.message || "Unable to retrieve students.");
-      setMessageType("error");
-    }
-  };
-
   // Search students by full or partial name
   const handleSearchStudents = async () => {
     if (searchName.trim() === "") {
@@ -155,12 +124,6 @@ export default function Dashboard() {
 
         <h1>Hi , {name || ""} 👋</h1>
         <p>{role || ""}</p>
-
-        <div className="dashboard-actions">
-          <Link to="/attendance" className="attendance-button">
-            Mark Attendance
-          </Link>
-        </div>
 
         {/* Add student */}
         <div className="student-actions">
@@ -212,43 +175,36 @@ export default function Dashboard() {
           </p>
         )}
 
-        {/* All students and search results */}
-        <div className="all-students">
-          <h2>Students</h2>
+        {/* Search results */}
+        {students.length > 0 && (
+          <div className="all-students">
+            <h2>Search Results</h2>
 
-          <button
-            type="button"
-            className="view-students-button"
-            onClick={handleSeeAllStudents}
-          >
-            See All Students
-          </button>
-
-          {students.length > 0 ? (
             <table className="students-table">
               <thead>
                 <tr>
-                  <th>Student ID</th>
+                  <th>No.</th>
                   <th>Student Name</th>
                 </tr>
               </thead>
 
               <tbody>
-                {students.map((student) => (
-                  <tr key={student.id}>
-                    <td>{student.id}</td>
+                {students.map((student, index) => (
+                  <tr key={student.name}>
+                    <td>{index + 1}</td>
                     <td>{student.name}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
-          ) : (
-            <p>
-          
-              
-            </p>
-          )}
-        </div>
+          </div>
+        )}
+
+        {/* Mark attendance and see all students (same page, no navigation) */}
+        <ClassAttendance />
+
+        {/* Look up attendance for a particular date */}
+        <DateLookup />
       </div>
     </div>
   );
